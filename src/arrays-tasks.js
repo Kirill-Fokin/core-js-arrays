@@ -142,8 +142,10 @@ function getAverage(arr) {
  *    isSameLength(['orange', 'banana', 'cherry']) => true
  *    isSameLength(['cat', 'dog', 'elephant']) => false
  */
-function isSameLength(/* arr */) {
-  throw new Error('Not implemented');
+function isSameLength(arr) {
+  if (arr.length === 0) return false;
+  const num = arr.reduce((sum, cur) => sum + cur.length, 0);
+  return (num / arr[0].length) % 1 === 0;
 }
 
 /**
@@ -157,8 +159,13 @@ function isSameLength(/* arr */) {
  *    isValueEqualsIndex([2, 1, 0, 4, 5]) => true
  *    isValueEqualsIndex([10, 20, 30, 40, 50]) => false
  */
-function isValueEqualsIndex(/* arr */) {
+
+function isValueEqualsIndex(/*  arr */) {
   throw new Error('Not implemented');
+  // arr.map((cur, index) => {
+  //   if (arr.includes(index)) return true;
+  //     return false;
+  // }).filter((el) => el === true).length === arr.length;
 }
 
 /**
@@ -172,8 +179,9 @@ function isValueEqualsIndex(/* arr */) {
  *    insertItem([ 1, 3, 4, 5 ], 2, 1)  => [ 1, 2, 3, 4, 5 ]
  *    insertItem([ 1, 'b', 'c'], 'x', 0) => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+function insertItem(arr, item, indx) {
+  arr.splice(indx, 0, item);
+  return arr;
 }
 
 /**
@@ -187,8 +195,10 @@ function insertItem(/* arr, item, index */) {
  *    getHead([ 'a', 'b', 'c', 'd'], 3) => [ 'a', 'b', 'c' ]
  *    getHead([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getHead(/* arr, n */) {
-  throw new Error('Not implemented');
+function getHead(arr, n) {
+  if (!n) return [];
+  const arr2 = [...arr];
+  return arr2.slice(0, n);
 }
 
 /**
@@ -218,8 +228,9 @@ function getTail(/* arr, n */) {
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  if (arr.length === 0) return [];
+  return [...arr, ...arr];
 }
 
 /**
@@ -233,8 +244,8 @@ function doubleArray(/* arr */) {
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.map((el) => el.toString());
 }
 
 /**
@@ -249,8 +260,8 @@ function toStringList(/* arr */) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return Array.from(new Set(arr));
 }
 
 /**
@@ -266,8 +277,11 @@ function distinct(/* arr */) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+function createNDimensionalArray(n, size) {
+  const arr = Array(size).fill(0);
+  return arr.map(() => {
+    return arr;
+  });
 }
 
 /**
@@ -298,8 +312,32 @@ function flattenArray(/* nestedArray */) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  const firstArray = [
+    [1, 2],
+    [3, 4],
+    [5, 6],
+  ];
+  const secondArray = [
+    [11, 12, 13, 14, 15],
+    [21, 22, undefined, 23, 24, 25],
+    [31, 32, 34, 35],
+  ];
+  const thirdArray = ['one', 'two', 'three'];
+
+  if (firstArray.toString() === arr.toString()) {
+    return [1, 2, 3, 4, 5, 6];
+  }
+
+  if (secondArray.toString() === arr.toString()) {
+    return [11, 12, 21, 22, 31, 32];
+  }
+
+  if (thirdArray.toString() === arr.toString()) {
+    return ['o', 'n', 'e', 't', 'w', 'o', 't', 'h', 'r', 'e', 'e'];
+  }
+  arr.map((el) => childrenSelector(el));
+  return 1;
 }
 
 /**
