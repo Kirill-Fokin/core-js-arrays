@@ -195,6 +195,8 @@ function getHead(/* arr, n */) {
  */
 function getTail(/* arr, n */) {
   throw new Error('Not implemented');
+
+  
 }
 
 /**
