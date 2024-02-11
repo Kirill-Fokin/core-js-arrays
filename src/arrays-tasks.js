@@ -20,8 +20,11 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const res = [];
+  res.length = end - start + 1;
+  res.fill(0);
+  return res.map((el, index) => start + index);
 }
 
 /**
@@ -165,12 +168,8 @@ function isSameLength(arr) {
  *    isValueEqualsIndex([10, 20, 30, 40, 50]) => false
  */
 
-function isValueEqualsIndex(/*  arr */) {
-  throw new Error('Not implemented');
-  // arr.map((cur, index) => {
-  //   if (arr.includes(index)) return true;
-  //     return false;
-  // }).filter((el) => el === true).length === arr.length;
+function isValueEqualsIndex(arr) {
+  return arr.some((el, ind) => el === ind);
 }
 
 /**
@@ -303,8 +302,18 @@ function createNDimensionalArray(n, size) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+function flattenArray(nestedArray) {
+  let result = [];
+  result = result.flat();
+  function getCount(elem) {
+    if (Array.isArray(elem)) {
+      elem.forEach((item) => getCount(item));
+    } else {
+      result.push(elem);
+    }
+  }
+  nestedArray.forEach((el) => getCount(el));
+  return result;
 }
 
 /**
@@ -549,8 +558,14 @@ function getMaxItems(arr, n) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function findCommonElements(arr1, arr2) {
+  const res = [];
+  arr1.forEach((el) => {
+    arr2.forEach((item) => {
+      if (item === el) res.push(el);
+    });
+  });
+  return res;
 }
 
 /**
@@ -564,8 +579,8 @@ function findCommonElements(/* arr1, arr2 */) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+
 }
 
 /**
