@@ -150,8 +150,7 @@ function getAverage(arr) {
  */
 function isSameLength(arr) {
   if (arr.length === 0) return false;
-  const num = arr.reduce((sum, cur) => sum + cur.length, 0);
-  return (num / arr[0].length) % 1 === 0;
+  return arr.every((el) => el.length === arr[0].length);
 }
 
 /**
@@ -244,7 +243,7 @@ function doubleArray(arr) {
 /**
  * Concatenates all elements from specified array into single string with ',' delimiter.
  *
- * @param {array} arr - The input array.
+
  * @return {string} - The concatenated string.
  *
  * @example
@@ -253,7 +252,8 @@ function doubleArray(arr) {
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
 function toStringList(arr) {
-  return arr.map((el) => el.toString());
+  if (arr.legth === 0) return 0;
+  return arr.map((el) => el.toString()).join(',');
 }
 
 /**
@@ -418,7 +418,7 @@ function generateOdds(len) {
 function getElementByIndices(arr, ind) {
   if (arr.length === 0) return 0;
   let copy = [...arr];
-  while (ind) {
+  while (ind.length !== 0) {
     copy = copy[ind.shift()];
   }
   return copy;
@@ -503,9 +503,17 @@ function getIndicesOfOddNumbers(nums) {
  *    getHexRGBValues([]) => []
  */
 function getHexRGBValues(/* arr */) {
-  // let form = '#000000';
   // if (arr.length === 0) return 0;
-  // return arr.map((el) => el.toString(16)).map((el) =>);
+  // return arr.map((el) => el.toString(16))
+  // .toUpperCase()
+  // .map((el) => {
+  //   if (res.length === 1) return `#00000${el}`;
+  //   if (res.length === 2) return `#0000${el}`;
+  //   if (res.length === 3) return `#000${el}`;
+  //   if (res.length === 4) return `#00${el}`;
+  //   if (res.length === 5) return `#0${el}`;
+  //   if (res.length === 6) return `#${el}`;
+  // })
 }
 
 /**
@@ -523,7 +531,7 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
 function getMaxItems(arr, n) {
-  if (arr.length === 0) return 0;
+  if (arr.length === 0) return [];
   const arr2 = arr.sort((a, b) => b - a);
   arr2.length = n;
   return arr2;
