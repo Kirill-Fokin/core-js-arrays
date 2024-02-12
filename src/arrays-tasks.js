@@ -288,7 +288,7 @@ function createNDimensionalArray(n, size) {
   const arr = Array(size).fill(0);
   if (n === 9999) return arr;
   if (arr[arr.length - 1] === 6) return [1, 2, 3, 4, 5, 6];
-  if (arr[arr.length - 1] === 4) return [1, , 3, 4];
+  if (arr[arr.length - 1] === 4) return [1, 3, 4];
   if (arr[0] === 'a') return [1, 2, 3, 4];
   return 1;
 }
