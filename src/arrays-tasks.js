@@ -304,17 +304,12 @@ function createNDimensionalArray(n, size) {
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
 function flattenArray(nestedArray) {
-  let result = [];
-  result = result.flat();
-  function getCount(elem) {
-    if (Array.isArray(elem)) {
-      elem.forEach((item) => getCount(item));
-    } else {
-      result.push(elem);
+  return nestedArray.reduce((acc, el) => {
+    if (Array.isArray(el)) {
+      return acc.concat(flattenArray(el)); 
     }
-  }
-  nestedArray.forEach((el) => getCount(el));
-  return result;
+    return acc.concat(el); 
+  }, []);
 }
 
 /**
