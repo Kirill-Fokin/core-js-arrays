@@ -306,9 +306,9 @@ function createNDimensionalArray(n, size) {
 function flattenArray(nestedArray) {
   return nestedArray.reduce((acc, el) => {
     if (Array.isArray(el)) {
-      return acc.concat(flattenArray(el)); 
+      return acc.concat(flattenArray(el));
     }
-    return acc.concat(el); 
+    return acc.concat(el);
   }, []);
 }
 
